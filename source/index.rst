@@ -7,7 +7,7 @@ DICOM Image Ingestion on AWS
    :maxdepth: 2
    :caption: Contents:
 
-introduction.rst
+   introduction.rst
 
 Indices and tables
 ==================
