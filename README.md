@@ -1,2 +1,3 @@
 # orthanc-dicom-s3-ingestion
-Solution using Orthanc to receive and store DICOM images in S3
+
+This is a solution using an Orthanc container running in Amazon ECS to receive and store DICOM images in Amazon S3.
