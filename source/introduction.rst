@@ -19,3 +19,6 @@ This architecture comprises the following:
 * Encryption is employed in transit during internet transport, and in communication between the Orthanc application and the PostgreSQL database and S3 bucket.  
 * Encryption of data is employed at rest in the S3 bucket, and the RDS and DynamoDB databases.
 * All the services used are `HIPAA eligible <https://aws.amazon.com/compliance/hipaa-eligible-services-reference/>`_.  With additional configuration, it may be possible for this solution to be used as part of a HIPAA compliant workflow.
+
+.. image:: images/orthanc-dicom-arch.png
+   :width: 1000 
