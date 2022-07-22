@@ -14,13 +14,14 @@ This architecture comprises the following:
 * `Amazon RDS <https://aws.amazon.com/rds/>`_ is used to store the index of the DICOM images received and stored by the Orthanc application in a PostgreSQL database. 
 * An `Amazon S3 <https://aws.amazon.com/s3/>`_ bucket stores the received DICOM images.  S3 buckets are highly durable and have no effective size limit, so a single bucket is sufficient to store any quantity of images.  The DICOM image objects are guaranteed to have unique names, so no storage hierarchy is required within the bucket.
 * Each DICOM image object that arrives in the S3 bucket triggers a notification event which is sent to an `Amazon Simple Queue Service <https://aws.amazon.com/sqs/>`_ (SQS) queue. 
-* An `AWS Lambda <https://aws.amazon.com/lambda/>`_ Python function consumes the messages from the SQS queue. The function reads the header of the DICOM image S3 object corresponding to each message, and parses this header into a JSON document using the `PyDicom <https://pydicom.github.io/>`_ library.
+* An `AWS Lambda <https://aws.amazon.com/lambda/>`_ Python function consumes the messages from the SQS queue. The function reads the header of the DICOM image S3 object corresponding to each message, and parses the header of this object into a JSON document using the `PyDicom <https://pydicom.github.io/>`_ library.
 * The DICOM header metadata is written to a `DynamoDB <https://aws.amazon.com/dynamodb/>`_ table, using the object's S3 key as a key value. From DynamoDB the data may be analyzed using a number of AWS analytics services.
 * Encryption is employed in transit during internet transport, and in communication between the Orthanc application and the PostgreSQL database and S3 bucket.  
 * Encryption of data is employed at rest in the S3 bucket, and the RDS and DynamoDB databases.
+* All user access to the solution is through the HTTPS endpoint of the Application Load Balancer.  AWS resources in the user's VPC (ECS service, RDS database) are deployed in private subnets without inbound internet access. Outbound internet access for these components is through NAT Gateways in public subnets.
 * All the services used are `HIPAA eligible <https://aws.amazon.com/compliance/hipaa-eligible-services-reference/>`_.  With additional configuration, it may be possible for this solution to be used as part of a HIPAA compliant workflow.
 
-.. figure:: images/orthanc-dicom-arch.png
+.. figure:: images/2207-Orthanc.png
    :width: 1000 
    
    Architecture Diagram
