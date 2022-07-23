@@ -8,6 +8,9 @@ DICOM Image Ingestion on AWS
    :caption: Contents:
 
    introduction.rst
+   dicom.rst
+   orthanc.rst
+   security.rst
 
 Indices and tables
 ==================
